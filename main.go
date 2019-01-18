@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"net/http"
 	"os"
 	"time"
@@ -17,6 +18,11 @@ func checkErr(err error) {
 }
 
 func main() {
+	if len(os.Args) != 2 {
+		fmt.Println("Usage: hs [url]")
+		os.Exit(1)
+	}
+
 	resp, err := http.Get(os.Args[1])
 	checkErr(err)
 	defer resp.Body.Close()
